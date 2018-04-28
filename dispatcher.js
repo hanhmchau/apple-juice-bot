@@ -2,14 +2,16 @@
 
 const DiceRoller = require("./diceroller");
 const Renderer = require("./renderer");
+const DeckOfManyThings = require("./deck");
 
 let Dispatcher = function() {
-    const prefix = '~';
+    const prefix = ['/', '~'];
     const methods = {};
     const renderer = new Renderer();
+    const deck = new DeckOfManyThings();
 
     let getCommand = content => {
-        const args = content.slice(prefix.length).trim().split(/ +/g);
+        const args = content.slice(1).trim().split(/ +/g);
         return args.shift().toLowerCase();
     };
 
@@ -18,6 +20,18 @@ let Dispatcher = function() {
         let results = diceRoller.getStatArray();
 
         renderer.renderStats(results, message);
+    };
+
+    methods.draw = message => {
+        let results = deck.drawCard();
+
+        renderer.renderCard(results, message);
+    };
+
+    methods.resetdeck = message => {
+        deck.reset();
+
+        renderer.renderResetDeck(message);
     };
 
     let dispatch = message => {

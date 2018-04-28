@@ -1,5 +1,7 @@
 'use strict';
 
+const Utils = require('./utils');
+
 let DiceRoller = function() {
 
     const ARRAY_SIZE = 6; //6 stats: Str, Dex, Con, Int, Wis, Cha
@@ -9,12 +11,10 @@ let DiceRoller = function() {
     const PRE_RACIAL_STAT_MIN = 8;
     const PRE_RACIAL_STAT_MAX = 16;
 
-    let getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
     let getRandomArray = () => {
         let array = [];
         for (let i = 0; i < NUMBER_OF_DICE; i++) {
-            array.push(getRandomInt(DICE_MIN, DICE_MAX));
+            array.push(Utils.getRandomInt(DICE_MIN, DICE_MAX));
         }
         return array;
     };
