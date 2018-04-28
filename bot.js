@@ -1,3 +1,4 @@
+'use strict';
 // JavaScript Document
 const Discord = require("discord.js");
 const client = new Discord.Client();

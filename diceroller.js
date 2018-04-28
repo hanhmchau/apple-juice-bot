@@ -1,3 +1,5 @@
+'use strict';
+
 let DiceRoller = function() {
 
     const ARRAY_SIZE = 6; //6 stats: Str, Dex, Con, Int, Wis, Cha
