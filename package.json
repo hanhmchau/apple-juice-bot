@@ -1,0 +1,10 @@
+{
+  "name": "Apple-Juice-Bot",
+  "version": "1.0.0",
+  "description": "My own Discord bot",
+  "main": "bot.js",
+  "author": "Arietta",
+  "dependencies": {
+    "discord.js": "^11.3.2"
+  }
+}
