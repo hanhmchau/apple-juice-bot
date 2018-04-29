@@ -4,6 +4,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 
 const fs = require("fs");
+const winston = require('./config/winston');
 const Dispatcher = require("./dispatcher");
 
 fs.readFile('auth.json', (err, data) => {
@@ -13,8 +14,7 @@ fs.readFile('auth.json', (err, data) => {
         client.on('message', message => {
             dispatcher.dispatch(message);
         });
-
     }).catch((reason) => {
-        console.log(reason);
+        winston.error(reason);
     });
 });
