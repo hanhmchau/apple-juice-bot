@@ -19,7 +19,7 @@ let Renderer = function() {
         let statSum = stats.reduce((a, b) => a + b);
 
         const embed = _getEmbed(message)
-            .setAuthor(title, message.author.displayAvatarURL)
+            .setAuthor('Dice of Bug', message.author.displayAvatarURL)
             .setFooter(`Total: ${statSum}`)
             .setDescription(statString);
         message.channel.send({embed});
@@ -41,6 +41,7 @@ let Renderer = function() {
         let card = results.chosenCard;
         if (card) {
             embed.setAuthor(card.name, message.author.displayAvatarURL)
+                .setThumbnail(card.image ? card.image : '')
                 .setDescription(substituteDice(card.description))
                 .setFooter(`${results.remaining} card${(results.remaining > 1 ? 's' : '')} remaining | ~resetDeck to reset.`);
         } else {
