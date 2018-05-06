@@ -3,7 +3,7 @@
 const Discord = require("discord.js");
 const Utils = require('./utils');
 
-let Renderer = function() {
+let Renderer = function () {
 
     let _getEmbed = (message) => {
         let DEFAULT_COLOR = 12961221;
@@ -22,7 +22,9 @@ let Renderer = function() {
             .setAuthor('Dice of Bug', message.author.displayAvatarURL)
             .setFooter(`Total: ${statSum}`)
             .setDescription(statString);
-        message.channel.send({embed});
+        message.channel.send({
+            embed
+        });
     };
 
     let substituteDice = (description) => {
@@ -49,19 +51,59 @@ let Renderer = function() {
                 .setDescription('Deck has been reset! Try drawing again!');
         }
 
-        message.channel.send({embed});
+        message.channel.send({
+            embed
+        });
     };
 
     let renderResetDeck = (message) => {
         let embed = _getEmbed(message)
             .setAuthor('Deck reset!', message.author.displayAvatarURL)
-        message.channel.send({embed});
+        message.channel.send({
+            embed
+        });
+    };
+
+    let renderNoItem = (message, type) => {
+        let embed = _getEmbed(message)
+        .setAuthor('Wowza! Whatchamacallit?', message.author.displayAvatarURL)
+        .setDescription('Try /minor help for a list of supported types.')
+
+        message.channel.send({
+            embed
+        });
+    };
+
+    let renderMinorItem = (item, message, type) => {
+
+        if (!item) {
+            renderNoItem(message, type);
+            return;
+        }
+
+        let title = `${Utils.capitalize(type)} ${item.suffix}`;
+        let alternative = `${item.prefix} ${Utils.capitalize(type)}`;
+
+        let embed = _getEmbed(message)
+            .setAuthor(title, message.author.displayAvatarURL)
+            .setDescription(`*Also known as: ${alternative}*`)
+            .addField('Description', item.description);
+
+        message.channel.send({
+            embed
+        });
+    };
+
+    let renderMinorHelp = (minorTypeList) => {
+        // TODO
     };
 
     return {
         renderStats,
         renderCard,
-        renderResetDeck
+        renderResetDeck,
+        renderMinorItem,
+        renderMinorHelp
     };
 };
 

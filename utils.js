@@ -1,6 +1,9 @@
 let Utils = function() {
 
+    //inclusive - inclusive
     let getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+    let capitalize = (string) => string.replace(/\b\w/g, l => l.toUpperCase());
     
     let getRandom = (times, dice) => {
         let total = 0;
@@ -22,7 +25,8 @@ let Utils = function() {
 
     return  {
         getRandomInt,
-        executeRoll
+        executeRoll,
+        capitalize
     };
 };
 
