@@ -1,14 +1,12 @@
 'use strict';
 
-const DiceRoller = require("./diceroller");
-const Renderer = require("./renderer");
-const DeckOfManyThings = require("./deck");
+const diceRoller = require("./diceroller");
+const renderer = require("./renderer");
+const deck = require("./deck");
 
 let Dispatcher = function() {
     const prefix = ['/', '~'];
     const methods = {};
-    const renderer = new Renderer();
-    const deck = new DeckOfManyThings();
 
     let getCommand = content => {
         const args = content.slice(1).trim().split(/ +/g);
@@ -16,7 +14,6 @@ let Dispatcher = function() {
     };
 
     methods.bugstats = message => {
-        const diceRoller = new DiceRoller();
         let results = diceRoller.getStatArray();
 
         renderer.renderStats(results, message);
@@ -46,4 +43,4 @@ let Dispatcher = function() {
     }
 };
 
-module.exports = Dispatcher;
+module.exports = new Dispatcher();

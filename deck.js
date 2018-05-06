@@ -44,4 +44,4 @@ let DeckOfManyThings = function() {
     }
 };
 
-module.exports = DeckOfManyThings;
+module.exports = new DeckOfManyThings();

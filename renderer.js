@@ -65,4 +65,4 @@ let Renderer = function() {
     };
 };
 
-module.exports = Renderer;
+module.exports = new Renderer();

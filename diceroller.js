@@ -40,4 +40,4 @@ let DiceRoller = function() {
     }
 };
 
-module.exports = DiceRoller;
+module.exports = new DiceRoller();
