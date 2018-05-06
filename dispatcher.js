@@ -45,7 +45,8 @@ let Dispatcher = function() {
         type = getType(message.content);
 
         if (type === 'help') {
-            renderer.renderMinorHelp();
+            let types = minors.getTypes();
+            renderer.renderMinorHelp(types, message);
         } else {
             let results = minors.randomize(type);
             renderer.renderMinorItem(results.item, message, results.type);    

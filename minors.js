@@ -51,14 +51,25 @@ let Minors = function() {
                 type
             };    
         }
+
+        return {};
     };
 
     let randomize = (type) => {
         return type ? randomizeType(type) : randomizeAll();
     };
 
+    let getTypes = () => {
+        let types = [];
+        for (let type in list) {
+            types.push(type);
+        }
+        return types;
+    };
+
     return {
-        randomize
+        randomize,
+        getTypes
     }
 };
 

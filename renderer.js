@@ -66,8 +66,8 @@ let Renderer = function () {
 
     let renderNoItem = (message, type) => {
         let embed = _getEmbed(message)
-        .setAuthor('Wowza! Whatchamacallit?', message.author.displayAvatarURL)
-        .setDescription('Try /minor help for a list of supported types.')
+            .setAuthor('Wowza! Whatchamacallit?', message.author.displayAvatarURL)
+            .setDescription('Try /minor help for a list of supported types.')
 
         message.channel.send({
             embed
@@ -94,8 +94,15 @@ let Renderer = function () {
         });
     };
 
-    let renderMinorHelp = (minorTypeList) => {
-        // TODO
+    let renderMinorHelp = (types, message) => {
+        let description = types.reduce((prev, curr, i) => `${prev}\n${(i + 1)}. ${curr}`, ' ');
+        let embed = _getEmbed(message)
+            .setAuthor('Minor Item Types', message.author.displayAvatarURL)
+            .setDescription(description);
+
+        message.channel.send({
+            embed
+        });
     };
 
     return {
