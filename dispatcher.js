@@ -34,7 +34,6 @@ let Dispatcher = function() {
 
     methods.minor = message => {
         let type = null;
-        let item;
 
         let getType = content => {
             const args = content.slice(1).trim().split(/ +/g);
@@ -48,8 +47,8 @@ let Dispatcher = function() {
         if (type === 'help') {
             renderer.renderMinorHelp();
         } else {
-            item = minors.randomize(type);
-            renderer.renderMinorItem(item, message, type);    
+            let results = minors.randomize(type);
+            renderer.renderMinorItem(results.item, message, results.type);    
         }
     };
 

@@ -11,21 +11,50 @@ let Minors = function() {
         list = JSON.parse(data);
     });
 
-    let randomizeAll = () => {
+    let getFullList = () => {
+        let fullList = [];
+        for (let type in list) {
+            fullList.push(...list[type]);
+        }
+        return fullList;
+    };
 
+    let getTypeFromIndex = (randIndex, list) => {
+        let start = 0;
+        for (let type in list) {
+            if (randIndex <= start + list[type].length) {
+                return type;
+            } else {
+                start = start + list[type].length + 1;
+            }
+        }
+    };
+
+    let randomizeAll = () => {
+        let fullList = getFullList();
+        let randIndex = Utils.getRandomInt(0, fullList.length - 1);
+        let type = getTypeFromIndex(randIndex, list);
+
+        return {
+            item: fullList[randIndex],
+            type
+        }
     };
 
     let randomizeType = (type) => {
-
-    };
-
-    let randomize = (type) => {
         let items = list[type];
         if (items) {
             let randIndex = Utils.getRandomInt(0, items.length - 1);
-            
-            return items[randIndex];    
+
+            return {
+                item: items[randIndex],
+                type
+            };    
         }
+    };
+
+    let randomize = (type) => {
+        return type ? randomizeType(type) : randomizeAll();
     };
 
     return {
