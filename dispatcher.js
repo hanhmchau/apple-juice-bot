@@ -54,9 +54,11 @@ let Dispatcher = function() {
     };
 
     let dispatch = message => {
-        let method = methods[getCommand(message.content)];
-        if (method) {
-            method(message);
+        if (message.content && prefix.includes(message.content[0])) {
+            let method = methods[getCommand(message.content)];
+            if (method) {
+                method(message);
+            }
         }
     };
 
