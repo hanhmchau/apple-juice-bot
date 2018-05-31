@@ -2,6 +2,8 @@
 
 const Discord = require("discord.js");
 const Utils = require('./utils');
+const Consts = require('./consts');
+const scheduler  = require('./scheduler');
 
 let Renderer = function () {
 
@@ -105,12 +107,33 @@ let Renderer = function () {
         });
     };
 
+    let renderScheduleMessage = (message) => {
+        let nickname = message.member.nickname || message.author.username;
+        message.channel.send(`**${nickname}** fancies to schedule ah game. Oh stop it! You tease! 💖`);
+
+        Consts.PLAY_DATES.forEach(el => {
+            renderScheduleDay(el, message.channel);
+        });
+    };
+
+    let renderScheduleDay = (date, channel) => {
+        channel.send(`Green this if you, one's old bean, can play ohn **${date}** and red it if you can't.`)
+            .then(message => {
+                scheduler.setMessage(message, date);
+                return message;
+            })
+            .then(message => message.react(Consts.YES_EMOJI))
+            .then(reaction => reaction.message.react(Consts.NO_EMOJI))
+            .catch(err => console.log(err));
+    };
+
     return {
         renderStats,
         renderCard,
         renderResetDeck,
         renderMinorItem,
-        renderMinorHelp
+        renderMinorHelp,
+        renderScheduleMessage
     };
 };
 

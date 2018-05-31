@@ -53,6 +53,14 @@ let Dispatcher = function() {
         }
     };
 
+    methods.bugschedule = message => {
+        renderer.renderScheduleMessage(message);
+    };
+
+    methods.info = message => {
+        console.log(message.guild.members);
+    };
+
     let dispatch = message => {
         if (message.content && prefix.includes(message.content[0])) {
             let method = methods[getCommand(message.content)];
