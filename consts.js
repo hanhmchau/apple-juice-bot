@@ -10,18 +10,7 @@ const consts = {
         PIKNO: '146504241005985792',
         DANI: '164899257495715841'
     },
-    PLAYERS: [RELICK, SHADIEL, ARYA, AKI, PIKNO, DANI],
-    PLAY_DATES: ['Saturday', 'Sunday'],
-    GAME: {
-        MAIN_TEAM: {
-            name: 'Team 1',
-            required: 6
-        },
-        BACKUP: {
-            name: 'Team 2',
-            required: 5
-        }
-    }
+    PLAY_DATES: ['Saturday', 'Sunday']
 };
 
 module.exports = consts;
