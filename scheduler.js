@@ -19,7 +19,22 @@ let Scheduler = function() {
         schedule = []
     };
 
-    let recalculate = () => {
+    let getDatePossibleForTeam1 = () => {
+        for (el of schedule) {
+            let yesReactions = el.message.reactions.filter(react => react.emoji.name === Consts.YES_EMOJI);
+            if (yesReactions == Consts.GAME.MAIN_TEAM.required) {
+                return el.date;
+            }
+        }
+    };
+
+    let getDatePossibleForBackup = () => {
+        for (el of schedule) {
+            let yesReactions = el.message.reactions.filter(react => react.emoji.name === Consts.YES_EMOJI);
+            if (yesReactions == Consts.GAME.BACKUP.required) {
+                return el.date;
+            }
+        }
     };
 
     let add = (reaction, user) => {
